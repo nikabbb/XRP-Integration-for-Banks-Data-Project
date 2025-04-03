@@ -1,0 +1,124 @@
+1. Running analysis of same transactions made with SWIFT and XRP
+ - generating and taking data
+ - feeding SWIFT and XRP logic and information of making transaction(fees, times, etc)
+ - EDA of XRP vs SWIFT for same transactions
+
+2. EDA where XRP can replace and help SWIFT, where it is better
+ - building a model that will detect where XRP will outperform SWIFT 
+
+3. Creating ETL pipeline and visualization dashboard in streamlit for banks to handle future XRP data.
+ - building ETL library to handle XRP data
+ - building visualization streamlit dashboard for banks to handle future XRP data
+
+
+ETL to handle XRP data:
+
+1. Introduction
+
+This document outlines the architecture, design, and implementation of two distinct ETL (Extract, Transform, Load) pipelines for handling XRP blockchain data within a banking context. These pipelines are designed to process customer data and transaction data separately, providing a robust and scalable solution for data management and analysis.
+
+2. Project Goals
+
+Data Integrity: Ensure the accuracy and consistency of XRP data.
+Data Enrichment: Enhance data with calculated fields and contextual information.
+Data Validation: Implement robust validation rules to prevent data errors.
+Scalability: Design pipelines to handle large volumes of data.
+Modularity: Create modular components for easy maintenance and extension.
+Visualization: Provide clear and informative visualizations of processed data and schemas.
+User-Friendly Interface: Develop an intuitive Streamlit application for data processing.
+Separation of Concerns: Maintain separate ETL pipelines for customer and transaction data.
+3. Architecture
+
+The project consists of two primary ETL pipelines:
+
+XRP Customer Data ETL:
+Processes customer identity and account information.
+Validates and standardizes customer data.
+Generates schemas for customer data.
+Provides download options for processed data.
+XRP Transaction Data ETL:
+Processes XRP transaction records.
+Validates and transforms transaction data.
+Enriches transaction data with calculated fields.
+Generates schemas for transaction data.
+Provides download options for processed data.
+Both pipelines utilize Python, Pandas, and PyArrow (for Parquet) and are presented via a Streamlit web application.
+
+4. Data Sources
+
+Customer Data:
+Parquet, CSV, or JSON files containing customer identity and account information.
+Transaction Data:
+Parquet, CSV, or JSON files containing XRP transaction records.
+5. ETL Processes
+
+5.1. XRP Customer Data ETL (xrp_customer_etl.py)
+
+Data Loading:
+Loads customer data from Parquet, CSV, or JSON files.
+Data Validation:
+Validates data against a predefined schema.
+Performs data type conversions and format checks.
+Handles missing data.
+Data Transformation:
+Standardizes address formats.
+Schema Generation:
+Generates a JSON schema representing the processed customer data.
+Data Output:
+Provides download options for processed data in CSV format.
+5.2. XRP Transaction Data ETL (xrp_transaction_etl.py)
+
+Data Loading:
+Loads transaction data from Parquet, CSV, or JSON files.
+Data Validation:
+Validates data against a predefined schema.
+Performs data type conversions, format checks, and range checks.
+Handles missing data.
+Data Transformation:
+Calculates fiat amounts.
+Categorizes transactions.
+Data Enrichment:
+Calculates transaction risk based on AML scores.
+Creates transaction size categories.
+Schema Generation:
+Generates a JSON schema representing the processed transaction data.
+Data Output:
+Provides download options for processed data in CSV format.
+6. Streamlit Application
+
+User Interface:
+Provides file uploaders for customer and transaction data.
+Displays processed data in tabular format.
+Visualizes data schemas in JSON format.
+Offers download options for processed data.
+Functionality:
+Invokes the ETL pipelines based on user input.
+Displays processing results and error messages.
+7. Data Schema
+
+Schemas are dynamically generated from the processed DataFrames.
+Schemas are represented in JSON format.
+Schemas include column names and data types.
+8. Technology Stack
+
+Python: Programming language.
+Pandas: Data manipulation and analysis.
+PyArrow: Parquet file handling.
+Streamlit: Web application framework.
+Faker: Dummy data generation.
+9. Implementation Details
+
+Modular Design: ETL logic is encapsulated in separate functions for reusability.
+Error Handling: Robust error handling is implemented to prevent application crashes.
+Logging: Logging is used for debugging and monitoring.
+Scalability: Parquet file format and efficient data processing techniques are used to ensure scalability.
+10. Future Enhancements
+
+Database Integration: Integrate with databases for data storage and retrieval.
+Real-Time Processing: Implement real-time transaction processing.
+Advanced Analytics: Add analytical capabilities for data exploration and reporting.
+API Integration: Integrate with external APIs for data enrichment and validation.
+Automated Testing: Implement automated unit and integration tests.
+Security: Add security features to protect sensitive data.
+KYC/AML ETL: Create a dedicated ETL for kyc/aml data processing.
+11. Conclusion
